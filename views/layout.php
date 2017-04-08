@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="theme/vendor/animate.css/animate.css" />
     <link rel="stylesheet" href="theme/vendor/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="theme/vendor/datatables.net-bs/css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" href="theme/vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css" />
 
     <!-- App styles -->
     <link rel="stylesheet" href="theme/vendor/style.css">
@@ -108,6 +109,8 @@
 <script src="theme/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
 <script src="theme/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
 <script src="theme/vendor/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="theme/vendor/jquery-validation/jquery.validate.min.js"></script>
+<script src="theme/vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- App scripts -->
 <script src="theme/vendor/scripts/homer.js"></script>
 
@@ -121,6 +124,42 @@
             "pageLength": 3,
             "lengthMenu": [[3, 5, 10, 25, 50, -1], [3, 5, 10, 25, 50, "All"]]
         });
+
+        $("#form").validate({
+            rules: {
+                password: {
+                    required: true,
+                    minlength: 3
+                },
+                url: {
+                    required: true,
+                    url: true
+                },
+                number: {
+                    required: true,
+                    number: true
+                },
+                max: {
+                    required: true,
+                    maxlength: 4
+                }
+            },
+            submitHandler: function(form) {
+                form.submit();
+            }
+        });
+
+        var date = new Date();
+        var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+        $('#datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            todayHighlight: true,
+            startDate: today
+            });
+
+
+
 
     });
 
