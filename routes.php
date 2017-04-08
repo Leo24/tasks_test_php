@@ -1,7 +1,6 @@
 <?php
 function call($controller, $action) {
     require_once('controllers/' . $controller . '_controller.php');
-$foo= false;
     switch($controller) {
         case 'tasks':
             require_once('models/task.php');
