@@ -19,13 +19,28 @@ class TasksController {
 
     public function create()
     {
-        $data = [];
-        if(!empty($_POST)){
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-            foreach($_POST as $item){
-                $data[] = $item;
+            require_once('views/tasks/create.php');
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = [];
+            if(!empty($_POST)){
+
+                foreach($_POST as $k => $item){
+                    $data[$k] = $item;
+                }
+                $data['status'] = 0;
+                $data['created_at'] = date('Y-m-d');
+                $task = Task::create($data);
+                if($task){
+                    require_once('views/tasks/create.php');
+                }
             }
         }
-        $task = Task::create($data);
+
+
+
     }
 }

@@ -50,17 +50,22 @@ class Task {
     {
         $db = Db::getInstance();
         try {
-            $sql = $db->prepare("INSERT INTO tasks (title, description, picture, status, created_at, end_date, user_id) 
-                          VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            $sql->bindParam(1, $data['title']);
-            $sql->bindParam(2, $data['description']);
-            $sql->bindParam(3, $data['picture']);
-            $sql->bindParam(4, $data['status']);
-            $sql->bindParam(5, $data['created_at']);
-            $sql->bindParam(6, $data['end_date']);
-            $sql->bindParam(7, $data['username']);
-            $sql->bindParam(8, $data['email']);
-            $sql->execute();
+            $sql = "INSERT INTO tasks (title, description, picture, status, created_at, end_date, username, email)
+                                            VALUES (:title, :description, :picture, :status, :created, :enddate, :username, :email)";
+
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':title', $data['title'], PDO::PARAM_STR);
+            $stmt->bindParam(':description', $data['description'], PDO::PARAM_STR);
+            $stmt->bindParam(':picture', $data['picture'], PDO::PARAM_STR);
+            $stmt->bindParam(':status', $data['status'], PDO::PARAM_BOOL);
+            $stmt->bindParam(':created', $data['created_at'], PDO::PARAM_STR);
+            $stmt->bindParam(':enddate', $data['end_date'], PDO::PARAM_STR);
+            $stmt->bindParam(':username', $data['username'], PDO::PARAM_STR);
+            $stmt->bindParam(':email', $data['email'], PDO::PARAM_STR);
+            if($stmt->execute()){
+                echo 'Task created successfully!';
+            }
+
         } catch(PDOException $e) {
             echo $e->getMessage();
         }
