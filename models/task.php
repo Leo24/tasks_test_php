@@ -21,7 +21,8 @@ class Task {
         $this->user_id=$user_id;
     }
 
-    public static function all() {
+    public static function all()
+    {
         $list = [];
         $db = Db::getInstance();
         $req = $db->query('SELECT t.id, t.title, t.description, t.picture, t.status, t.created_at, t.end_date, t.username, t.email FROM tasks as t
@@ -44,6 +45,38 @@ class Task {
         }
 
         return $list;
+    }
+
+    public static function getTask($id)
+    {
+        $list = [];
+        $db = Db::getInstance();
+        try {
+            $sql = 'SELECT t.id, t.title, t.description, t.picture, t.status, t.created_at, t.end_date, t.username, t.email FROM tasks as t
+                           WHERE t.id = :id';
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+            $stmt->execute();
+
+        } catch(PDOException $e) {
+            echo $e->getMessage();
+        }
+
+        foreach($stmt->fetchAll() as $task) {
+            $list[] = new Task(
+                $task['id'],
+                $task['title'],
+                $task['description'],
+                $task['picture'],
+                $task['status'],
+                $task['created_at'],
+                $task['end_date'],
+                $task['username'],
+                $task['email']
+            );
+        }
+
+        return $list[0];
     }
 
     public static function create($data)
@@ -73,8 +106,23 @@ class Task {
 
 
 
-    public static function update($id) {
+    public static function update($data) {
+        $db = Db::getInstance();
+        try {
+            $sql = "UPDATE tasks SET description = :description, status = :status  
+            WHERE id = :id";
 
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id', $data['id'], PDO::PARAM_STR);
+            $stmt->bindParam(':description', $data['description'], PDO::PARAM_STR);
+            $stmt->bindParam(':status', $data['status'], PDO::PARAM_BOOL);
+            if($stmt->execute()){
+                echo 'Task updated successfully!';
+            }
+
+        } catch(PDOException $e) {
+            echo $e->getMessage();
+        }
     }
 
 }

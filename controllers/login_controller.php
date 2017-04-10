@@ -14,7 +14,6 @@ class LoginController {
             if ($username === $user->email && $password === $user->password) {
                 $_SESSION['login'] = true;
                 header("Location: http://www.php.loc/"); /* Redirect browser */
-                exit();
             } else {
                 $userError = 'Wrong Email';
                 $passError = 'Wrong Password';

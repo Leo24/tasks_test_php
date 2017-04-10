@@ -64,7 +64,7 @@
     <div id="navigation">
         <ul class="nav" id="side-menu">
             <li>
-                <a href="?controller=login&action=login"> <span class="nav-label">Admin panel</span></a>
+                <a href="?controller=login&action=login"> <span class="nav-label">Enter admin panel</span></a>
             </li>
             <li>
                 <a href="/"> <span class="nav-label">Tasks list</span></a>

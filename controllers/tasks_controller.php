@@ -35,23 +35,16 @@ class TasksController {
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $id = htmlspecialchars(trim($_GET['task_id']));
-            $foo = false;
             $task = Task::getTask($id);
             require_once('views/tasks/admin/edit.php');
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = [];
-
             foreach($_POST as $k => $item){
                 $data[$k] = $item;
             }
-            $data['status'] = 0;
-            $data['created_at'] = date('Y-m-d');
-            $task = Task::create($data);
-            if($task){
-                require_once('views/tasks/create.php');
-            }
+            $task = Task::update($data);
         }
     }
 }

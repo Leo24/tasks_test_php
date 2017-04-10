@@ -22,7 +22,7 @@ function call($controller, $action) {
 // we're adding an entry for the new controller and its actions
 $controllers = array(
     'login' => ['login', 'logout'],
-    'tasks' => ['index', 'show', 'create', 'edit'],
+    'tasks' => ['index', 'create', 'edit', 'admin'],
     'pages' => ['home', 'error'],
     );
 
