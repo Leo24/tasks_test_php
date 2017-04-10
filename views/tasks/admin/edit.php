@@ -12,7 +12,7 @@
         </div>
         <div class="form-group">
             <label>Task description</label>
-            <textarea type="text" name="description" placeholder="Enter task description" class="form-control" required><?php echo $task->description; ?></textarea>
+            <textarea name="description" placeholder="Enter task description" class="form-control" required><?php echo $task->description; ?></textarea>
         </div>
             <label class="col-sm-2 control-label">Status</label>
             <select class="selectpicker form-control m-b" name="status">
