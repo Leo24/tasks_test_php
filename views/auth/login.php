@@ -4,9 +4,10 @@
 
     <form role="form" id="form" action="?controller=login&action=login" method="POST">
 
-        <div class="form-group"><label>Email</label>
+
+        <div class="form-group"><label>Username</label>
             <p><?=(isset($userError)) ? $userError : ''?></p>
-            <input type="email" name="email" placeholder="Email" class="form-control" required>
+            <input type="text" name="username" placeholder="Email" class="form-control" required>
         </div>
         <div class="form-group"><label>Password</label>
             <p><?=(isset($passError)) ? $passError : ''?></p>
