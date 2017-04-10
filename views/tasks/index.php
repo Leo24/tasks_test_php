@@ -30,19 +30,15 @@
                     <td><?php echo $value->username; ?></td>
                     <td><?php echo $value->email; ?></td>
                     <td>
-
                         <div class=" m-b">
-
                             <div id="thumbnail">
                                 <div class="image-holder">
                                     <img class="img"  src="<?php echo $value->picture; ?>" />
                                     <div style="background: url({{ asset('storage/'.$data->picture) }}) no-repeat center;background-size: cover;" class="img"></div>
                                 </div>
                             </div>
-
                         </div>
-
-                        </td>
+                    </td>
                     <td>
                         <?php if (($value->status == false )): ?>
                             <?php echo 'Pending' ?>
