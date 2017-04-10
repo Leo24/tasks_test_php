@@ -8,9 +8,10 @@ class Task {
     public $status;
     public $created_at;
     public $end_date;
-    public $user_id;
+    public $username;
+    public $email;
 
-    public function __construct($id, $title, $description, $picture, $status, $created_at, $end_date, $user_id) {
+    public function __construct($id, $title, $description, $picture, $status, $created_at, $end_date, $username, $email) {
         $this->id=$id;
         $this->title=$title;
         $this->description=$description;
@@ -18,7 +19,8 @@ class Task {
         $this->status=$status;
         $this->created_at=$created_at;
         $this->end_date=$end_date;
-        $this->user_id=$user_id;
+        $this->username=$username;
+        $this->email=$email;
     }
 
     public static function all()
