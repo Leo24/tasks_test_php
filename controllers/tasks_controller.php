@@ -25,6 +25,16 @@ class TasksController {
                 }
                 $data['status'] = 0;
                 $data['created_at'] = date('Y-m-d');
+
+            $file = $_FILES['picture'];
+            $fileName = $file['name'];
+            $path = $_SERVER['DOCUMENT_ROOT'] . "/uploads/" . basename($fileName);
+
+            if (move_uploaded_file($file['tmp_name'], $path)) {
+                $data['picture'] = "/uploads/" . basename($fileName);
+            } else {
+                echo 'Move failed. Possible duplicate?';
+            }
                 $task = Task::create($data);
                 if($task){
                     require_once('views/tasks/create.php');
