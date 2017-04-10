@@ -22,6 +22,8 @@
 
     <!-- App styles -->
     <link rel="stylesheet" href="theme/vendor/style.css">
+    <link rel="stylesheet" href="theme/vendor/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="theme/vendor/fonts/pe-icon-7-stroke/css/helper.css" />
 
 </head>
 <body class="fixed-navbar fixed-sidebar ">
@@ -42,6 +44,18 @@
             <span class="text-primary">HOMER APP</span>
         </div>
 
+        <?php session_start();?>
+        <?php if($_SESSION['login'] == true):?>
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+                    <a href="?controller=login&action=logout">
+                        <i class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <?php endif;?>
     </nav>
 </div>
 
@@ -50,7 +64,7 @@
     <div id="navigation">
         <ul class="nav" id="side-menu">
             <li>
-                <a href="#"> <span class="nav-label">Admin panel</span></a>
+                <a href="?controller=login&action=login"> <span class="nav-label">Admin panel</span></a>
             </li>
             <li>
                 <a href="/"> <span class="nav-label">Tasks list</span></a>
@@ -82,9 +96,7 @@
     <!-- Footer-->
     <footer class="footer">
         <span class="pull-right">
-            Example text
         </span>
-        Company 2015-2020
     </footer>
 
 </div>
@@ -156,7 +168,7 @@
             format: 'yyyy-mm-dd',
             todayHighlight: true,
             startDate: today
-            });
+        });
 
 
 
