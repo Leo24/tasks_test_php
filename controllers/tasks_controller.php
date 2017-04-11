@@ -16,7 +16,7 @@ class TasksController {
             require_once('views/tasks/create.php');
         }
 
-        if (!empty($POST) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (!empty($_POST) && $_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = [];
 
                 foreach($_POST as $k => $item){
@@ -48,7 +48,7 @@ class TasksController {
             require_once('views/tasks/admin/edit.php');
         }
 
-        if (!empty($POST) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (!empty($_POST) && $_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = [];
             foreach($_POST as $k => $item){
                 $data[$k] = $item;
