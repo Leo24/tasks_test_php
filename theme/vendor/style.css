@@ -3685,3 +3685,9 @@ ul.h-list li:hover a {
     margin-left: 10px;
   }
 }
+
+
+img.img-size{
+  max-width: 320px;
+  max-height: 240px;
+}
